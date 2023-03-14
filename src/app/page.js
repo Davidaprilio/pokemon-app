@@ -1,91 +1,61 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="container block mx-auto mt-20">
+      <div className="flex justify-center">
+        <div className="w-96">
+          <h1 className="text-4xl font-bold">Welcome to Next.js!</h1>
+          <p className="text-2xl">Let's get started!</p>
+
+          <div className="border rounded-sm bg-zinc-400 p-2">
+            <Image src="/pokeball.png" width={100} height={100} />
+            <div className="bg-white rounded-md flex flex-col p-5" >
+              <div className="flex justify-center gap-x-3">
+                <Badge />
+                <Badge />
+              </div>
+
+              <h3 className="text-zinc-400 font-bold text-center">About</h3>
+
+              <div className="flex justify-center text-center my-4">
+                <div className="w-1/3 p-1">
+                  <div className="flex flex-col justify-center">
+                    <div className="min-h-[50px] flex justify-center items-center">9,9 kg</div>
+                    <small className="text-xs block">Weight</small>
+                  </div>
+                </div>
+                <div className="w-1/3 p-1">
+                  <div className="flex flex-col justify-center">
+                    <div className="min-h-[50px] flex justify-center items-center">9,9 m</div>
+                    <small className="text-xs block">Height</small>
+                  </div>
+                </div>
+                <div className="w-1/3 p-1">
+                  <div className="flex flex-col justify-center">
+                    <div className="min-h-[50px] flex flex-col justify-center items-center">
+                      <div>Abiliti 1</div>
+                      <div>Abiliti 2</div>
+                    </div>
+                    <small className="text-xs block">Moves</small>
+                  </div>
+                </div>
+              </div>
+
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vel earum nesciunt similique enim commodi libero! Temporibus vitae reprehenderit odio eaque tenetur quae quos explicabo eveniet esse facere, harum non.</p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
     </main>
+  )
+}
+
+
+const Badge = () => {
+  return (
+    <div className="bg-zinc-700 text-white rounded-full px-3 py-1 text-xs font-semibold tracking-wide">
+      Badge
+    </div>
   )
 }
