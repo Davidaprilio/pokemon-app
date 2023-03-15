@@ -1,44 +1,31 @@
+"use client"
+
 import CardDetail from "@/components/CardDetail";
 import CardPreview from "@/components/CardPreview";
 import Image from "next/image";
-
-const pokemons = [
-  'bulbasaur',
-  'ivysaur',
-  'venusaur',
-  'charmander',
-  'charmeleon',
-  'charizard',
-  'squirtle',
-  'wartortle',
-  'blastoise',
-  'caterpie',
-  'metapod',
-  'butterfree',
-  'weedle',
-  'kakuna',
-  'beedrill',
-  'pidgey',
-  'pidgeotto',
-  'pidgeot',
-  'rattata',
-  'raticate',
-  'spearow',
-  'fearow',
-  'ekans',
-  'arbok',
-  'pikachu',
-  'raichu',
-  'sandshrew',
-  'sandslash',
-  'nidoran-f',
-  'nidorina',
-  'nidoqueen',
-];
+import { useEffect, useState } from "react";
+const Pokedex = require("pokeapi-js-wrapper")
+const PokeApi = new Pokedex.Pokedex()
 
 export default function Home() {
 
-  // pokemon
+  const [pokemonList, setPokemonList] = useState([])
+  
+  useEffect(() => {
+    if(pokemonList.length === 0) {
+      console.log('Request');
+      PokeApi.getPokemonsList({
+        offset: 0,
+        limit: 30,
+      }).then(list => {
+        const urls = list.results.map(p => p.url)
+        PokeApi.resource(urls).then(function(response) {
+          console.log(response)
+          setPokemonList(response)
+        })
+      })
+    }
+  })
 
   return (
     <>
@@ -71,9 +58,9 @@ export default function Home() {
               <div className="flex">
                 <div className="w-9/12">
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    {pokemons.map((pokemon) => (
-                      <CardPreview key={pokemon} pokemon={pokemon} />
-                    ))}
+                    {pokemonList.length > 0 ? pokemonList.map((pokemon, i) => (
+                        <CardPreview key={i} pokemon={pokemon} />
+                    )) : <CardPokeLoading />}
                   </div>
                 </div>
                 <div className="max-w-sm w-fit">
@@ -86,4 +73,14 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+const CardPokeLoading = () => {
+  const cards = []
+  for (let i = 0; i < 10; i++) {
+    cards.push(
+      <CardPreview key={i} loading={true} />
+    )
+  }
+  return cards
 }
